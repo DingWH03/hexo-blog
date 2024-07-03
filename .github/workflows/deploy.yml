@@ -72,6 +72,9 @@ jobs:
         run: |
           echo "blog.cxhap.top" > .deploy_git/CNAME
           cd .deploy_git
+          git config user.name "$GIT_USER"
+          git config user.email "$GIT_EMAIL"
           git add CNAME
           git commit -m "Add CNAME file for custom domain"
-          git push origin main
+          git push https://${GH_TOKEN}@github.com/DingWH03/dingwh03.github.io.git HEAD:main
+
