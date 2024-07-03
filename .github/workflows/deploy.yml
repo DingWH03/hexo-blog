@@ -76,5 +76,5 @@ jobs:
           git config user.email "$GIT_EMAIL"
           git add CNAME
           git commit -m "Add CNAME file for custom domain"
-          git push https://${GH_TOKEN}@github.com/DingWH03/dingwh03.github.io.git HEAD:main
-
+          git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
+          git push origin HEAD:main
