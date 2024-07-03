@@ -11,7 +11,7 @@ env:
   THEME_REPO: fluid-dev/hexo-theme-fluid
   THEME_BRANCH: master
   DEPLOY_REPO: DingWH03/dingwh03.github.io
-  DEPLOY_BRANCH: master
+  DEPLOY_BRANCH: main
 
 jobs:
   build:
