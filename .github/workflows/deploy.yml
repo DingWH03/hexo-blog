@@ -58,7 +58,7 @@ jobs:
           git config --global user.name $GIT_USER
           git config --global user.email $GIT_EMAIL
           cp _config_theme.yml themes/fluid/_config.yml
-          sed -i 's|repo:.*|repo: https://${GH_TOKEN}@github.com/DingWH03/dingwh03.github.io.git|' _config.yml
+          sed -i "s|token:.*|token: ${GH_TOKEN}|" _config.yml
 
       - name: Install dependencies
         run: |
