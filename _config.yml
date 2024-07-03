@@ -102,6 +102,6 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:DingWH03/hexo-blog.git
+  repo: git@github.com:DingWH03/dingwh03.github.io.git
   branch: main
   token: GH_TOKEN
