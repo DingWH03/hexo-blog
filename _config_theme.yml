@@ -434,6 +434,8 @@ footer:
     # Data source. If use leancloud, you need to set the parameter in `web_analytics: leancloud`
     # Options: busuanzi | leancloud
     source: "leancloud"
+    pv_format: "总访问量{}次"
+    uv_format: "总访客数{}人"
 
   # 国内大陆服务器的备案信息
   # For Chinese mainland website policy, other areas keep disable
@@ -577,6 +579,7 @@ post:
       # Data Source
       # Options: busuanzi | leancloud
       source: "leancloud"
+      format: "{} 次"
 
   # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
   # Update date is displayed at the beginning of the post. The default date is the update date of the md file, which can be manually specified by `updated` in front-matter (same format as date)
