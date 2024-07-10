@@ -54,6 +54,7 @@ author: DingWH03
 
 ## 校园网自动登录
 这里我提供合肥工业大学合肥校区校园网自动登录脚本，其他学校的可以优先查找Github仓库，若找不到，技术强的大佬可以通过抓包的方式自行摸索。自动登录脚本参考自[合肥工业大学校园网自动登陆指南](https://github.com/HowardZorn/HFUT-DrCOM)，我为了做成自动化脚本稍微进行了一些改动。
+    
     #!/bin/bash
 
     username="2022xxxxxx"
