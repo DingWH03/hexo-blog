@@ -124,9 +124,10 @@ hexo server
 ### 更多配置内容
 
 为了节约篇幅和更直观形象，下面将用表格呈现一些有用的配置内容。需要注意的是，一个Hexo项目有一个自己的配置文件`_config.yml`，此外每个主题还有一个自己的配置文件`themes/fluid/_config.yml`。
-表1：
+
+表1：_config.yml
 | 键(Key) | 值(Val) | 描述(Description) |
-| _______ | _______ | _________________ |
+| ------- | ------- | ----------------- |
 | title | Your Blog Title | 浏览器tab页名称 |
 | subtitle | Your Subtitle | title的副标题 |
 | description | Your description | 网站的描述 | 
@@ -138,3 +139,30 @@ hexo server
 | post_asset_folder | true | 为每个post自动建立资源文件夹 | 
 | theme | fluid | 所使用的主题名称 |
 
+表2：themes/fluid/_config.yml
+| 键(Key) | 值(Val) | 描述(Description) |
+| ------- | ------- | ----------------- |
+| favicon | /img/fluid.png | 浏览器标签的图标 |
+| apple_touch_icon | /img/fluid.png | 苹果设备的图标 |
+| blog_title | Your blog_title | 导航栏左侧的标题 | 
+| menu | … | 导航栏菜单，可自行添加页面 |
+| index/slogan/text | … | 显示在主页的文字 |
+| about/* | … | 自定义关于页面的个人信息 | 
+
+以上只是我建议修改的配置内容，如查找进阶内容请参考[Hexo Fluid 用户手册](https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%85%B3%E4%BA%8E%E6%8C%87%E5%8D%97)与[Hexo手册](https://hexo.io/zh-cn/docs/)自行研究。
+
+### 增加阅读量统计
+
+
+### 增加评论功能
+
+
+## 添加博客页面与文章
+
+### 添加About页面
+
+
+### 从模板新建文章
+
+
+## 配置Github Action自动发布到Github Page
