@@ -153,16 +153,178 @@ hexo server
 
 ### 增加阅读量统计
 
+参考文章[Hexo-fluid主题设置统计博客阅读量](http://minghuijia.cn/2022/03/14/Hexo-fluid%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE%E7%BB%9F%E8%AE%A1%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E9%87%8F/)
 
 ### 增加评论功能
 
+参考文章[Hexo-fluid主题设置统计博客阅读量](http://minghuijia.cn/2022/03/14/Hexo-fluid%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE%E7%BB%9F%E8%AE%A1%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E9%87%8F/)
 
 ## 添加博客页面与文章
 
 ### 添加About页面
 
+使用`hexo new page about`即可新建一个about页面，页面默认存放在**source**文件夹中，一个页面就是一个文件夹。
 
 ### 从模板新建文章
 
+同理，使用`hexo new post newpost`即可新建一篇文章，文章默认存放在**source/_posts**文件夹中，所有的文章都存储在**_posts**文件夹中，但可在文章同级目录建立同名文件夹以存放图片等资源文件，如下图。
+
+{% asset_img 1.png post目录结构 %}
 
 ## 配置Github Action自动发布到Github Page
+
+经过上面的配置操作，相信你已经成功在本地运行起来了自己的博客，但仅仅运行在本地肯定不够，我们需要将博客推送到github page中，通过username.github.io或是通过自己的域名进行访问。
+
+### 原理
+
+github page支持的是静态页面，而hexo编译后生成的`public`文件夹内存放的便是静态页面，因此我们只需要将`public`文件夹内的内容推送至个人github page仓库即可。
+
+### 准备工作
+
+首先你需要注册一个自己的github账号，并且进行了一系列的安全配置工作。
+
+#### 创建Github仓库
+
+我们需要创建两个仓库来完成操作，其中一个仓库名随意，我使用的名称是hexo-blog，另一个仓库名必须以`yourusername.github.io`为名字，在创建时会提示你这个仓库是特殊仓库，如下图（因为我预先创建过了，显示仓库已存在）。其中`yourusername.github.io`仓库必须设为**public**。
+
+{% asset_img 2.png 创建仓库 %}
+
+#### 配置git
+
+我们需要使用git工具来将本地代码推送至github仓库，git工具在第一次使用前必须进行相关配置。参考[官方文档](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE)。
+
+#### 同步代码
+
+为了便于操作，我使用vscode来完成git推送工作，我们首先使用git工具克隆一份空仓库，仓库地址可从Github获取，如下图。
+
+{% asset_img 3.png 仓库URL %}
+
+在终端使用命令`git clone your-repository-url`克隆到本地，并且将之前创建的hexo项目复制到文件夹下（要将my_blog下的所有文件以及文件夹复制到hexo-blog文件夹下，而不是复制整个my_blog文件夹），接着使用vscode打开文件夹，保持目录结构如下图。
+
+{% asset_img 4.png 目录结构 %}
+
+然后试试vscode的源代码管理功能吧。这里第一次点击提交是提交更改，第二次则是同步到仓库，第一次提交时必须填写消息。
+
+{% asset_img 5.png 源代码管理 %}
+
+同步完成后，去Github仓库看下是否同步成功吧。
+
+#### 拷贝主题配置文件
+
+由于我的github action脚本会自动拉取最新版本主题，因此主题的配置文件必须保存在其他地方，在部署时复制进去即可，因此我们提前将主题配置文件`themes/fluid/_config.yml`复制到`_config_theme.yml`。
+
+#### 配置github action
+
+##### 配置SSH密钥对
+
+使用命令`ssh-keygen -f github-deploy-key`在当前工作目录下可生成文件`github-deploy-key`和`github-deploy-key.pub`。
+
+复制 github-deploy-key 文件内容，在 hexo-blog 仓库 `Settings -> Secrets and variables -> Actions -> New repository secret` 页面上添加。
+1. 在 Name 输入框填写 HEXO_DEPLOY_PRI。
+2. 在 Value 输入框填写 github-deploy-key 文件内容。
+
+复制 github-deploy-key.pub 文件内容，在 your.github.io 仓库 Settings -> Deploy keys -> Add deploy key 页面上添加。
+1. 在 Title 输入框填写 HEXO_DEPLOY_PUB。
+2. 在 Key 输入框填写 github-deploy-key.pub 文件内容。
+3. 勾选 Allow write access 选项。
+
+##### 配置GH_Token
+
+使用hexo-deployer-git工具部署时需要github personal access token，而且这个token是不能写在配置文件中的，因此只能写在仓库环境变量中，在action部署时自动获取。点击你的GitHub头像 -> 设置 -> 开发者设置 -> Personal access tokens -> Generate new token来获取这个token,设置权限时只需要设置有关repository的读写权限即可。
+复制 personal access token 内容，在 hexo-blog 仓库 `Settings -> Secrets and variables -> Actions -> New repository secret` 页面上添加。
+1. 在 Name 输入框填写 GH_TOKEN。
+2. 在 Value 输入框填写 personal access token 内容。
+
+
+##### 添加github action
+
+新建文件`.github/workflows/deploy.yml`，将下面的模板内容粘贴进去，然后根据自己的需要进行修改，需要修改的地方已标出。
+
+   name: CI
+
+   on:
+   push:
+      branches:
+         - master
+
+   env:
+   GIT_USER: DingWH03 # 这里更改为自己的Github用户名
+   GIT_EMAIL: 2521248869@qq.com # 这里更改为自己的Github绑定的邮箱
+   THEME_REPO: fluid-dev/hexo-theme-fluid # 这里更改为你使用的主题的git仓库，省略github.com
+   THEME_BRANCH: master # 这里更改为你使用的主题的git分支
+   DEPLOY_REPO: DingWH03/dingwh03.github.io # 这里更改为你自己的仓库地址，省略github.com
+   DEPLOY_BRANCH: main # 这里更改为你自己的仓库分支，一般都是main
+
+   jobs:
+   build:
+      name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
+      runs-on: ubuntu-latest
+      strategy:
+         matrix:
+         os: [ubuntu-latest]
+         node_version: [16.x]
+
+      steps:
+         - name: Checkout
+         uses: actions/checkout@v4
+
+         - name: Checkout theme repo
+         uses: actions/checkout@v4
+         with:
+            repository: ${{ env.THEME_REPO }}
+            ref: ${{ env.THEME_BRANCH }}
+            path: themes/fluid # 这里更换成你的主题所在路径
+
+         - name: Checkout deploy repo
+         uses: actions/checkout@v4
+         with:
+            repository: ${{ env.DEPLOY_REPO }}
+            ref: ${{ env.DEPLOY_BRANCH }}
+            path: .deploy_git
+
+         - name: Use Node.js ${{ matrix.node_version }}
+         uses: actions/setup-node@v4
+         with:
+            node-version: ${{ matrix.node_version }}
+
+         - name: Configuration environment
+         env:
+            HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
+            GH_TOKEN: ${{secrets.GH_TOKEN}}
+         run: |
+            sudo timedatectl set-timezone "Asia/Shanghai"
+            mkdir -p ~/.ssh/
+            echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            git config --global user.name $GIT_USER
+            git config --global user.email $GIT_EMAIL
+            cp _config_theme.yml themes/fluid/_config.yml # 拷贝主题的配置文件
+            sed -i "s|token:.*|token: ${GH_TOKEN}|" _config.yml 
+
+         - name: Install dependencies
+         run: |
+            npm install
+
+         - name: Deploy hexo
+         run: |
+            npm run deploy
+         
+         - name: Add CNAME file # 这部分用来为github page添加自己的域名，后面会讲
+         run: |
+            echo "blog.cxhap.top" > .deploy_git/CNAME # 改成你的域名地址
+            cd .deploy_git
+            git config user.name "$GIT_USER"
+            git config user.email "$GIT_EMAIL"
+            git add CNAME
+            git commit -m "Add CNAME file for custom domain"
+            git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
+            git push origin HEAD:main
+
+##### 为github page添加自己的域名
+
+步骤和原理都很简单，在你的域名DNS解析中添加一条CNAME解析指向你的github.io地址，然后在github.io仓库中添加一个CNAME文件，里面内容即是你的域名，在上面的脚本中已经体现出来了。
+
+{% asset_img 6.png cloudfare %}
+
+同步一下仓库吧，不出意外的话Github action会自动执行，并且上传到github.io中。如遇到问题欢迎与我联系。
