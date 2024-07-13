@@ -239,7 +239,7 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
 ##### 添加github action
 
 新建文件`.github/workflows/deploy.yml`，将下面的模板内容粘贴进去，然后根据自己的需要进行修改，需要修改的地方已标出。
-
+   ```
    name: CI
 
    on:
@@ -320,7 +320,8 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
             git commit -m "Add CNAME file for custom domain"
             git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
             git push origin HEAD:main
-
+   ```
+   
 ##### 为github page添加自己的域名
 
 步骤和原理都很简单，在你的域名DNS解析中添加一条CNAME解析指向你的github.io地址，然后在github.io仓库中添加一个CNAME文件，里面内容即是你的域名，在上面的脚本中已经体现出来了。
