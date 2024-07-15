@@ -141,7 +141,7 @@ color:
   body_bg_color: "#eee"
   # 暗色模式下的 body 背景色，下同
   # Color in dark mode, the same below
-  body_bg_color_dark: "#534847"
+  body_bg_color_dark: "#49010F"
 
   # 顶部菜单背景色
   # Color of navigation bar background
@@ -190,8 +190,8 @@ color:
 
   # 超链接悬浮时字体色
   # Color of link when hovering
-  link_hover_color: "#30a9de"
-  link_hover_color_dark: "#30a9de"
+  link_hover_color: "#f26d5b"
+  link_hover_color_dark: "#f26d5b"
 
   # 超链接悬浮背景色
   # Color of link background when hovering
