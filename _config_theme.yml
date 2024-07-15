@@ -145,8 +145,8 @@ color:
 
   # 顶部菜单背景色
   # Color of navigation bar background
-  navbar_bg_color: "#c77418"
-  navbar_bg_color_dark: "#5f3a20"
+  navbar_bg_color: "#EC7357"
+  navbar_bg_color_dark: "#CE6D39"
 
   # 顶部菜单字体色
   # Color of navigation bar text
