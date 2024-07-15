@@ -205,12 +205,12 @@ color:
 
   # 滚动条颜色
   # Color of scrollbar
-  scrollbar_color: "#c4c6c9"
-  scrollbar_color_dark: "#687582"
+  scrollbar_color: "#f9a11b"
+  scrollbar_color_dark: "#fdc23e"
   # 滚动条悬浮颜色
   # Color of scrollbar when hovering
-  scrollbar_hover_color: "#a6a6a6"
-  scrollbar_hover_color_dark: "#9da8b3"
+  scrollbar_hover_color: "#a79c8e"
+  scrollbar_hover_color_dark: "#fff1b9"
 
   # 按钮背景色
   # Color of button
