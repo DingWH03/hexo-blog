@@ -161,7 +161,64 @@ hexo server
 
 ### 显示数学公式
 
+> 参考官方配置指南[latex-数学公式](https://fluid-dev.github.io/hexo-fluid-docs/guide/#latex-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F)，基本配置和官方类似，但需要注意安装pandoc工具（使用mathjax），否则会报错。
 
+#### 1. 设置主题配置
+
+编辑主题配置文件themes/fluid/_config.yml
+
+   ```yaml
+   post:
+   math:
+      enable: true
+      specific: false
+      engine: mathjax
+   ```
+
+`specific`: 建议开启。当为 true 时，只有在文章 front-matter (opens new window)里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度。
+
+`engine`: 公式引擎，目前支持 `mathjax` 或 `katex`。
+
+#### 2. 更换 Markdown 渲染器
+
+由于 Hexo 默认的 Markdown 渲染器不支持复杂公式，所以需要更换渲染器（mathjax 可选择性更换）。
+
+然后根据上方配置不同的 `engine`，推荐更换如下渲染器：
+
+1. mathjax
+
+```bash
+npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-pandoc --save
+```
+
+并且还需安装pandoc
+
+```bash
+sudo apt-get install pandoc -y
+```
+
+2. katex
+
+```bash
+npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-markdown-it --save
+npm install @traptitech/markdown-it-katex --save
+```
+
+然后在站点配置中添加：
+
+```yaml
+markdown:
+  plugins:
+    - "@traptitech/markdown-it-katex"
+```
+
+#### 清理环境
+
+```bash
+hexo clean
+```
 
 ## 添加博客页面与文章
 
@@ -296,6 +353,7 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
             HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
             GH_TOKEN: ${{secrets.GH_TOKEN}}
          run: |
+            sudo apt-get install pandoc -y # pandoc是为了启用数学公式渲染
             sudo timedatectl set-timezone "Asia/Shanghai"
             mkdir -p ~/.ssh/
             echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
