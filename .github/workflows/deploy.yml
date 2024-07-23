@@ -50,6 +50,7 @@ jobs:
           HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
           GH_TOKEN: ${{secrets.GH_TOKEN}}
         run: |
+          sudo apt-get install pandoc -y
           sudo timedatectl set-timezone "Asia/Shanghai"
           mkdir -p ~/.ssh/
           echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
