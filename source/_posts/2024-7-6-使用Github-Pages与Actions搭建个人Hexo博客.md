@@ -159,6 +159,10 @@ hexo server
 
 参考文章[Hexo-fluid主题设置统计博客阅读量](http://minghuijia.cn/2022/03/14/Hexo-fluid%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE%E7%BB%9F%E8%AE%A1%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E9%87%8F/)
 
+### 显示数学公式
+
+
+
 ## 添加博客页面与文章
 
 ### 添加About页面

@@ -6,4 +6,5 @@ categories:
 author: DingWH03
 hide: false
 archive: false
+math: false
 ---
