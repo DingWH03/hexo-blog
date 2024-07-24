@@ -8,7 +8,7 @@ on:
 env:
   GIT_USER: DingWH03
   GIT_EMAIL: 2521248869@qq.com
-  THEME_REPO: fluid-dev/hexo-theme-fluid
+  THEME_REPO: DingWH03/hexo-theme-fluid
   THEME_BRANCH: master
   DEPLOY_REPO: DingWH03/dingwh03.github.io
   DEPLOY_BRANCH: main

@@ -372,19 +372,22 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
          run: |
             npm run deploy
          
-         - name: Add CNAME file # 这部分用来为github page添加自己的域名，后面会讲
-         run: |
-            echo "blog.cxhap.top" > .deploy_git/CNAME # 改成你的域名地址
-            cd .deploy_git
-            git config user.name "$GIT_USER"
-            git config user.email "$GIT_EMAIL"
-            git add CNAME
-            git commit -m "Add CNAME file for custom domain"
-            git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
-            git push origin HEAD:main
+         #- name: Add CNAME file # 这部分用来为github page添加自己的域名，后面会讲
+         #run: |
+         #   echo "blog.cxhap.top" > .deploy_git/CNAME # 改成你的域名地址
+         #   cd .deploy_git
+         #   git config user.name "$GIT_USER"
+         #   git config user.email "$GIT_EMAIL"
+         #   git add CNAME
+         #   git commit -m "Add CNAME file for custom domain"
+         #   git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
+         #   git push origin HEAD:main
    ```
    
 ##### 为github page添加自己的域名
+
+> 最新更正，现在有更简单的方法，编写一个文件名为CNAME存放在`source/CNAME`，文件内容为你的域名，在部署时会直接放置到github page根目录，这样做或避免相邻两次重复部署github page。
+> 参考[hexo-deployer-git_issues#87](https://github.com/hexojs/hexo-deployer-git/issues/87)。
 
 步骤和原理都很简单，在你的域名DNS解析中添加一条CNAME解析指向你的github.io地址，然后在github.io仓库中添加一个CNAME文件，里面内容即是你的域名，在上面的脚本中已经体现出来了。
 
