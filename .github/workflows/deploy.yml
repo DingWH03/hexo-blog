@@ -69,13 +69,13 @@ jobs:
         run: |
           npm run deploy
       
-      - name: Add CNAME file
-        run: |
-          echo "blog.cxhap.top" > .deploy_git/CNAME
-          cd .deploy_git
-          git config user.name "$GIT_USER"
-          git config user.email "$GIT_EMAIL"
-          git add CNAME
-          git commit -m "Add CNAME file for custom domain"
-          git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
-          git push origin HEAD:main
+      # - name: Add CNAME file
+      #   run: |
+      #     echo "blog.cxhap.top" > .deploy_git/CNAME
+      #     cd .deploy_git
+      #     git config user.name "$GIT_USER"
+      #     git config user.email "$GIT_EMAIL"
+      #     git add CNAME
+      #     git commit -m "Add CNAME file for custom domain"
+      #     git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
+      #     git push origin HEAD:main
