@@ -11,6 +11,10 @@ author: DingWH03
 language: zh-CN
 timezone: ''
 
+markdown:
+  plugins:
+    - "@traptitech/markdown-it-katex"
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://blog.cxhap.top
