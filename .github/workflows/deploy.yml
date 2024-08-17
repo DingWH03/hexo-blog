@@ -57,7 +57,7 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name $GIT_USER
           git config --global user.email $GIT_EMAIL
-          cp _config_theme.yml themes/fluid/_config.yml
+          cp _config.fluid.yml themes/fluid/_config.yml
           sed -i "s|token:.*|token: ${GH_TOKEN}|" _config.yml
 
       - name: Install dependencies
@@ -68,13 +68,3 @@ jobs:
         run: |
           npm run deploy
       
-      # - name: Add CNAME file
-      #   run: |
-      #     echo "blog.cxhap.top" > .deploy_git/CNAME
-      #     cd .deploy_git
-      #     git config user.name "$GIT_USER"
-      #     git config user.email "$GIT_EMAIL"
-      #     git add CNAME
-      #     git commit -m "Add CNAME file for custom domain"
-      #     git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
-      #     git push origin HEAD:main
