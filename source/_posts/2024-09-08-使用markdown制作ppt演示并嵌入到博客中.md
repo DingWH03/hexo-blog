@@ -166,6 +166,8 @@ slidev build --out my-build-folder
 
 ## 嵌入到博客中
 
+将slidev生成的静态页面嵌入hexo中，亲测可以正常放映以及可以进入全屏模式放映。
+
 ### 配置hexo编译跳过目录
 
 在Hexo博客里想调用或者链接slidev生成的html，需要hexo设置`skip_render`, 指定不进行渲染的文件或文件夹，例如在`source`目录下新建`slidev`来存放slidev生成的html，则需要在根目录下的`_config.yml`文件添加：
