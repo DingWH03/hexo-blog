@@ -1,7 +1,7 @@
 ---
 title: OpenWrt简易校园网自动认证+双WAN配置
 date: 2024-07-04 16:14:17
-categories: OpenWrt
+categories: 简单记录
 tags: [OpenWrt, 网络配置, 自动认证]
 author: DingWH03
 ---

@@ -1,8 +1,8 @@
 ---
 title: 使用Github Pages与Actions搭建个人Hexo博客
 date: 2024-07-06 17:55:03
-categories: Blog
-tags: [Github Pages, Github Actions, Hexo]
+categories: 简单记录
+tags: [Github Pages, Github Actions, Hexo, nodejs]
 author: DingWH03
 ---
 使用Github Pages与Actions搭建个人Hexo博客
