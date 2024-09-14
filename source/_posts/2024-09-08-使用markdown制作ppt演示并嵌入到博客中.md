@@ -6,7 +6,7 @@ archive: false
 math: false
 date: 2024-09-08 13:03:49
 tags: [Slidev, Web PPT, Hexo, nodejs]
-categories: Blog
+categories: 简单记录
 ---
 
 在学习rcore课程与观看开源操作系统夏令营课程时，偶然发现老师使用markdown文件编译出的web ppt，于是吸引了我的注意，遂自行进行尝试，以本文记录slidev的使用方法以及嵌入博客的方法，供本人使用时快速查阅参考。
@@ -26,6 +26,8 @@ slidev由node.js提供，在安装slidev之前需要先保证node.js安装配置
 ```shell
 sudo npm install @slidev/cli -g
 ```
+
+> 在执行这条命令时，由于配置在`/etc/profile`或`.profile`中的nodejs的bin不被sudo信任，所以可能会出现找不到命令npm的情况，如果出现了，最简单的方法是先执行`sudo -i`提权再执行`npm install @slidev/cli -g`安装到全局目录吧。
 
 ## 创建slidev项目
 
