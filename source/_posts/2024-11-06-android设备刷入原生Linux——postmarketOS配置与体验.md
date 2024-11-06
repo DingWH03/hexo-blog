@@ -48,7 +48,7 @@ fastboot reboot
 
 等重启后会进入lk2nd界面，在此界面会显示设备相关信息，继续使用fastboot命令分别刷入boot和rootfs到boot分区和userdata分区。
 
-{% asset_img AGC_20241106_222452204.png lk2nd %}
+{% asset_img AGC_20241106_222452204.jpg lk2nd %}
 
 ```bash
 fastboot flash boot xxx-boot.img
@@ -58,15 +58,15 @@ fastboot reboot
 
 再次重启后，即可引导开机。
 
-{% asset_img AGC_20241106_222544907.png photo %}
+{% asset_img AGC_20241106_222544907.jpg photo %}
 
 ## 三、启动
 
-{% asset_img AGC_20241106_222616804.png photo %}
+{% asset_img AGC_20241106_222616804.jpg photo %}
 
 由于我选择内置phosh图形界面，启动成功会进入phosh的锁屏界面，默认账户密码为147147，输入成功即可解锁，第一次开机会出现欢迎界面。使用图形界面正常的连接wifi后，记下IP地址，还需要打开`Settings->System->Secure Shell`才可以愉快的使用ssh连接。
 
-{% asset_img AGC_20241106_223924789.png photo %}
+{% asset_img AGC_20241106_223924789.jpg photo %}
 
 不过可能是bug，我尝试在图形界面中启用ssh并不生效，只能在终端中手动使用命令启用了。
 
@@ -91,3 +91,16 @@ Connection closed by 10.0.0.142 port 22
 ```
 
 ## 四、配置系统
+
+### 1. 更换软件源
+
+上手一个全新的Linux第一步当然是更换软件源加速软件包下载，我直接使用ustc和tuna镜像源，直接将下面的配置内容放入`/etc/apk/repositories`即可。当然也可以使用其他镜像源。
+
+postmarketOS默认是不安装`vim`的，但是支持`vi`。
+
+```text
+https://mirrors.tuna.tsinghua.edu.cn/postmarketOS/master
+http://mirrors.ustc.edu.cn/alpine/edge/main
+http://mirrors.ustc.edu.cn/alpine/edge/community
+http://mirrors.ustc.edu.cn/alpine/edge/testing
+```
