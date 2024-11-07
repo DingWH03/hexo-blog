@@ -104,3 +104,38 @@ http://mirrors.ustc.edu.cn/alpine/edge/main
 http://mirrors.ustc.edu.cn/alpine/edge/community
 http://mirrors.ustc.edu.cn/alpine/edge/testing
 ```
+
+### 2. 软件包管理
+
+postmarketOS基于alpine linux构建，使用apk管理软件包，常用操作如下：
+
+```bash
+sudo apk update # 更新软件源
+sudo apk upgrade # 更新软件包
+sudo apk add fish # 下载软件包
+apk search fish # 搜索软件包
+sudo apk del fish # 删除软件包
+```
+
+### 3. Shell
+
+默认的`ash`通常没有`fish`或配置过的`zsh`好用，为了简便，我直接选择了`fish`作为我的shell，但不作为默认shell，避免出现某些配置错误，在需要时输入`fish`即可。
+
+```bash
+sudo apk add fish
+```
+
+### 4. 新建账户
+
+系统内置账户`user`，密码为`147147`，但我们仍然可以创建新账户，同时保留原来的账户，旧账户用来图形界面登陆即可。
+
+```bash
+passwd # 修改当前账户(user)密码
+sudo useradd -m your_user_name # -m表明需要创建home目录
+sudo passwd your_user_name # 修改新账户密码
+sudo usermod -aG wheel,audio,input,video,netdev,plugdev,feedbackd your_user_name  # 为新账户添加附属分组
+```
+
+进行这些操作之后，新账户已经可以正常使用，并具有sudo权限，然后可以重新使用ssh登陆新账户。
+
+### 5. 启用swap
