@@ -139,3 +139,36 @@ sudo usermod -aG wheel,audio,input,video,netdev,plugdev,feedbackd your_user_name
 进行这些操作之后，新账户已经可以正常使用，并具有sudo权限，然后可以重新使用ssh登陆新账户。
 
 ### 5. 启用swap
+
+刷入的postmarketos默认是启用zram的，由于我将rootfs刷入`userdata`分区，`system`分区可以格式化作为`swap`来使用，当然也可以作为其他分区使用。
+
+命令如下：
+
+```bash
+sudo mkswap /dev/disk/by-partlabel/system # 格式化
+sudo swapon /dev/disk/by-partlabel/system # 启用所选分区
+```
+
+这两条命令即可临时启用`system`分区作为swap，但不会开机应用，要想开机自动挂载需要将以下内容添加进入``文件末尾：
+
+```bash
+/dev/disk/by-partlabel/system    swap    swap    nofail  0 0
+```
+
+使用`system`作为swap之前：
+
+```bash
+free -m
+              total        used        free      shared  buff/cache   available
+Mem:           3560         567        2331         101         662        2812
+Swap:          1780           0        1780
+```
+
+挂载成功后：
+
+```bash
+free -m
+              total        used        free      shared  buff/cache   available
+Mem:           3560         580        2327          93         654        2808
+Swap:          4852           0        4852
+```
