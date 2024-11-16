@@ -6,7 +6,9 @@ archive: false
 math: false
 date: 2024-09-08 13:03:49
 tags: [Slidev, Web PPT, Hexo, nodejs]
-categories: 简单记录
+categories: 
+- 简单记录
+- 工具使用
 ---
 
 在学习rcore课程与观看开源操作系统夏令营课程时，偶然发现老师使用markdown文件编译出的web ppt，于是吸引了我的注意，遂自行进行尝试，以本文记录slidev的使用方法以及嵌入博客的方法，供本人使用时快速查阅参考。
