@@ -62,3 +62,7 @@ sudo chmod -R 750 /var/lib/mysql
 ```
 
 再次启动运行的命令，顺利启动。
+
+## 四、管理数据库
+
+建议使用免费又好用的开源工具[DBeaver](https://github.com/dbeaver/dbeaver)。
