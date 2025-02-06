@@ -5,8 +5,6 @@ categories: 简单记录
 tags: [Github Pages, Github Actions, Hexo, nodejs]
 author: DingWH03
 ---
-使用Github Pages与Actions搭建个人Hexo博客
-==========================================
 
 ## 引言
 
@@ -57,24 +55,32 @@ Hexo 的架构主要包括以下几个部分：
 
 1. **安装 Node.js 和 Git**：Hexo 依赖于 Node.js 和 Git，首先需要在系统中安装这两个工具。
 2. **安装 Hexo**：使用 npm（Node.js 包管理工具）安装 Hexo：
+
    ```bash
    npm install -g hexo-cli
    ```
+
 3. **初始化博客**：在目标目录下初始化一个新的 Hexo 博客：
+
    ```bash
    hexo init my-blog
    cd my-blog
    npm install
    ```
+
 4. **创建文章**：使用 Hexo 提供的命令创建新文章：
+
    ```bash
    hexo new "My First Post"
    ```
+
 5. **生成和预览**：生成静态文件并在本地服务器中预览博客：
+
    ```bash
    hexo generate
    hexo server
    ```
+
    在浏览器中访问 `http://localhost:4000` 查看博客效果。
 
 ### 部署到 GitHub Pages
@@ -82,17 +88,22 @@ Hexo 的架构主要包括以下几个部分：
 Hexo 提供了简便的部署命令，可以将生成的静态文件直接部署到 GitHub Pages：
 
 1. **配置部署信息**：在博客根目录的 `_config.yml` 文件中配置 GitHub Pages 的仓库信息：
+
    ```yaml
    deploy:
      type: git
      repo: https://github.com/username/username.github.io.git
      branch: main
    ```
+
 2. **安装部署插件**：
+
    ```bash
    npm install hexo-deployer-git --save
    ```
+
 3. **执行部署命令**：
+
    ```bash
    hexo deploy
    ```
@@ -116,6 +127,7 @@ Hexo提供了许多免费的主题可供直接使用，用户可以个性化选�
 #### 应用主题
 
 寻找my_blog根目录下配置文件**_config.yml**，找到**theme**这一行，修改为`theme: fluid`，别忘了:后面有一个空格。修改完配置文件后自己去看看效果吧：
+
 ```bash
 hexo generate
 hexo server
@@ -130,13 +142,13 @@ hexo server
 | ------- | ------- | ----------------- |
 | title | Your Blog Title | 浏览器tab页名称 |
 | subtitle | Your Subtitle | title的副标题 |
-| description | Your description | 网站的描述 | 
+| description | Your description | 网站的描述 |
 | author | Your Name | 文章作者名 |
 | language | "zh-CN" | 网站语言 |
-| timezone | '' | 时区设置，可置空 | 
+| timezone | '' | 时区设置，可置空 |
 | url | Your Blog url | 可设置成Github Page的地址 |
 | new_post_name | :year-:month-:day-:title.md | post的模板标题 |
-| post_asset_folder | true | 为每个post自动建立资源文件夹 | 
+| post_asset_folder | true | 为每个post自动建立资源文件夹 |
 | theme | fluid | 所使用的主题名称 |
 
 表2：themes/fluid/_config.yml
@@ -144,10 +156,10 @@ hexo server
 | ------- | ------- | ----------------- |
 | favicon | /img/fluid.png | 浏览器标签的图标 |
 | apple_touch_icon | /img/fluid.png | 苹果设备的图标 |
-| blog_title | Your blog_title | 导航栏左侧的标题 | 
+| blog_title | Your blog_title | 导航栏左侧的标题 |
 | menu | … | 导航栏菜单，可自行添加页面 |
 | index/slogan/text | … | 显示在主页的文字 |
-| about/* | … | 自定义关于页面的个人信息 | 
+| about/* | … | 自定义关于页面的个人信息 |
 
 以上只是我建议修改的配置内容，如查找进阶内容请参考[Hexo Fluid 用户手册](https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%85%B3%E4%BA%8E%E6%8C%87%E5%8D%97)与[Hexo手册](https://hexo.io/zh-cn/docs/)自行研究。
 
@@ -281,10 +293,12 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
 使用命令`ssh-keygen -f github-deploy-key`在当前工作目录下可生成文件`github-deploy-key`和`github-deploy-key.pub`。
 
 复制 github-deploy-key 文件内容，在 hexo-blog 仓库 `Settings -> Secrets and variables -> Actions -> New repository secret` 页面上添加。
+
 1. 在 Name 输入框填写 HEXO_DEPLOY_PRI。
 2. 在 Value 输入框填写 github-deploy-key 文件内容。
 
 复制 github-deploy-key.pub 文件内容，在 your.github.io 仓库 Settings -> Deploy keys -> Add deploy key 页面上添加。
+
 1. 在 Title 输入框填写 HEXO_DEPLOY_PUB。
 2. 在 Key 输入框填写 github-deploy-key.pub 文件内容。
 3. 勾选 Allow write access 选项。
@@ -293,13 +307,14 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
 
 使用hexo-deployer-git工具部署时需要github personal access token，而且这个token是不能写在配置文件中的，因此只能写在仓库环境变量中，在action部署时自动获取。点击你的GitHub头像 -> 设置 -> 开发者设置 -> Personal access tokens -> Generate new token来获取这个token,设置权限时只需要设置有关repository的读写权限即可。
 复制 personal access token 内容，在 hexo-blog 仓库 `Settings -> Secrets and variables -> Actions -> New repository secret` 页面上添加。
+
 1. 在 Name 输入框填写 GH_TOKEN。
 2. 在 Value 输入框填写 personal access token 内容。
-
 
 ##### 添加github action
 
 新建文件`.github/workflows/deploy.yml`，将下面的模板内容粘贴进去，然后根据自己的需要进行修改，需要修改的地方已标出。
+
    ```
    name: CI
 
@@ -383,7 +398,7 @@ github page支持的是静态页面，而hexo编译后生成的`public`文件夹
          #   git remote set-url origin git@github.com:DingWH03/dingwh03.github.io.git
          #   git push origin HEAD:main
    ```
-   
+
 ##### 为github page添加自己的域名
 
 > 最新更正，现在有更简单的方法，编写一个文件名为CNAME存放在`source/CNAME`，文件内容为你的域名，在部署时会直接放置到github page根目录，这样做或避免相邻两次重复部署github page。
