@@ -434,13 +434,13 @@ footer:
   # 国内大陆服务器的备案信息
   # For Chinese mainland website policy, other areas keep disable
   beian:
-    enable: false
+    enable: enable
     # ICP证号
-    icp_text: 京ICP证123456号
+    icp_text: 皖ICP备2026002069号-1
     # 公安备案号，不填则只显示ICP
-    police_text: 京公网安备12345678号
+    police_text: 皖公网安备34030002001337号
     # 公安备案的编号，用于URL跳转查询
-    police_code: 12345678
+    police_code: 34030002001337
     # 公安备案的图片. 为空时不显示备案图片
     police_icon: /img/police_beian.png
 
@@ -717,7 +717,7 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: true
+    enable: false
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
